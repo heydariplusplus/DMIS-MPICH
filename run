@@ -1,0 +1,2 @@
+mpc++ -o main main.cpp node.cpp misplgorithm.cpp
+mpirun -n 9 ./main ~/Input ~/Output
