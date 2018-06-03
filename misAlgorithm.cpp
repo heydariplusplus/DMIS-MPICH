@@ -156,6 +156,8 @@ void MisAlgorithm::Round3(int id, vector<int>* vecNeiId, double& randNum, double
 	Log(id, "...Round 3 Finish...");
 }
 
+//In this method, each node receives the sent messages that containes the status of its neighbors. 
+//If there is at least one neighbor with status Mis, then the status of the node will be ComMis.
 void MisAlgorithm::Round4(int id, vector<int>* vecNeiId)
 {
 	Log(id, "...Round 4 Start...");
@@ -181,6 +183,8 @@ void MisAlgorithm::Round4(int id, vector<int>* vecNeiId)
 	Log(id, "...Round 4 Finish...");
 }
 
+/*In this method, if the status of a node is ComMis, then it sends its Id to its neighbors. The resean of this task is explained 
+in the explanation of the next method.*/
 void MisAlgorithm::Round5(int id, vector<int>* vecNeiId)
 {
 	Log(id, "...Round 5 Start...");
@@ -198,6 +202,10 @@ void MisAlgorithm::Round5(int id, vector<int>* vecNeiId)
 	Log(id, "...Round 5 Finish...");
 }
 
+/*In this method, if the status of the node is Unknown, it updates the list (vecNeiId) that contains the neighbors Ids. 
+In the update task, the node deletes the Ids of all ComMis neighbors from vecNeiId.
+It should be noted that the nodes with status Mis or ComMis are deactive at the end of each iteration. 
+The update task is necessary because if it is not done, in the next iteration, the node waits for reveiveing messages from the deactive neighbors.*/
 void MisAlgorithm::Round6(int id, vector<int>* vecNeiId)
 {
 	Log(id, "...Round 6 Start...");
