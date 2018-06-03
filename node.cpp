@@ -19,7 +19,7 @@ Node::Node(int id, IAlgorithm* algorithm, string neiIdFilePath)
 Node::~Node()
 {
 	this->VecNeiId->clear();
-	delete this->VecNeiId;
+	delete this->VecNeiId;		//free the memory
 }
 
 void Node::ReadNeiId(string neiIdFilePath)
@@ -27,14 +27,16 @@ void Node::ReadNeiId(string neiIdFilePath)
 	string line;
 	ifstream neiIdFile;
 	neiIdFile.open(neiIdFilePath, ios::in);
+	
 	if (neiIdFile.is_open())
 	{
 		while (getline(neiIdFile, line))
 		{
-			this->VecNeiId->push_back(stoi(line));
+			this->VecNeiId->push_back(stoi(line));	//convert string to int, and push it on the vector (list).
 		}
-		neiIdFile.close();
 	}
-	else cout << "Node " << to_string(this->Id) << ":Unable to open input file";
+	else cout << "Node " << to_string(this->Id) << ":Unable to open input file" << endl;
+	
+	neiIdFile.close();
 }
 
